@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import utils.ApplicationCapabilitiesFactory;
 import utils.JavaAppiumServer;
 
 public class CheckGoogleSearchSuite {
@@ -16,14 +17,9 @@ public class CheckGoogleSearchSuite {
 
     @Before
     public void setUpConfig() {
-        capabilities = new DesiredCapabilities();
-        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "R58M36G55CR");
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "9");
-        capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "Chrome");
-        webDriver = new AndroidDriver(capabilities);
+        final DesiredCapabilities googDesiredCapabilities = ApplicationCapabilitiesFactory.getCapabilities("Google");
         javaAppiumServer = new JavaAppiumServer();
-        javaAppiumServer.startServer(capabilities);
+        javaAppiumServer.startServer(googDesiredCapabilities);
     }
 
     @Test
